@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Modal,
   Form,
@@ -11,6 +12,12 @@ import { signInAdmin, isSignedIn, signOutAdmin } from '../database/AdminAccess';
 import { showError } from './Toast';
 
 export default class SignInModal extends React.Component {
+  static propTypes = {
+    open: PropTypes.func.isRequired,
+    hide: PropTypes.func.isRequired,
+    onSuccess: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
 
