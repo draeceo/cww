@@ -1,3 +1,5 @@
+import { isMobile } from 'react-device-detect';
+
 // TEXT
 
 const text = {
@@ -23,7 +25,15 @@ const navItem = {
   fontSize: 16
 }
 
-const mainItem = {
+const mainItem = isMobile ? 
+{
+  fontFamily: 'Baskerville',
+  fontWeight: 600,
+  color: '#fff',
+  fontSize: 32
+}
+:
+{
   fontFamily: 'Baskerville',
   fontWeight: 600,
   color: '#fff',
