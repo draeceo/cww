@@ -5,7 +5,7 @@ import Home from './pages/Home';
 
 const App = () => (
   <div>
-    <NavBar />
+    <NavBar inverted />
     <Home />
   </div>
 )

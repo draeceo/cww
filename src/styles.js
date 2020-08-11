@@ -1,28 +1,52 @@
-export const text = {
+// TEXT
+
+const text = {
   fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
-  fontWeight: '300',
-  fontColor: '#000'
+  fontWeight: 300,
+  color: '#000'
 }
 
-export const heading = {
+const heading = {
   ...text,
-  fontWeight: '600',
+  fontWeight: 600,
   fontSize: 32
 }
 
-export const body = {
+const body = {
   ...text,
   fontSize: 16
 }
 
-export const navItem = {
+const navItem = {
   ...text,
-  fontWeight: '700',
+  fontWeight: 700,
   fontSize: 16
+}
+
+const mainItem = {
+  fontFamily: 'Baskerville',
+  fontWeight: 600,
+  color: '#fff',
+  fontSize: 48
+}
+
+const button = {
+  ...text,
+  fontSize: 16,
+  fontWeight: 500,
+  color: '#fff'
 }
 
 export const textStyles = {
   body,
   heading,
-  navItem
+  navItem,
+  mainItem,
+  button
+}
+
+// COLOR
+
+export const colors = {
+  blackOverlay: 'rgb(0,0,0,0.4)'
 }
