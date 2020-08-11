@@ -24,11 +24,11 @@ export default class NavBar extends React.Component {
 
   render() {
     return (
-      <Segment inverted style={{ padding: 0 }}>
-        <Menu inverted secondary stackable>
+      <Segment inverted={this.props.inverted} style={{ padding: 0, margin: 0 }}>
+        <Menu inverted={this.props.inverted} secondary stackable>
           <Menu.Item>
             <Image 
-              src={logoWhite} 
+              src={this.props.inverted ? logoWhite : logoBlack} 
               alt='CWW Logo' 
               size='small'
               href='/'
@@ -47,7 +47,7 @@ export default class NavBar extends React.Component {
             />
           ))}
           <Menu.Item>
-            <Icon name='setting' inverted onClick={this.props.showMgmtModal} />
+            <Icon name='setting' inverted={this.props.inverted} onClick={this.props.showMgmtModal} />
           </Menu.Item>
         </Menu>
       </Segment>
