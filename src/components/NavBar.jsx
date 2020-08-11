@@ -19,7 +19,7 @@ const menuItems = ['projects', 'about', 'contact'];
 
 export default class NavBar extends React.Component {
   static propTypes = {
-    showMgmtModal: PropTypes.func.isRequired
+    showSignInModal: PropTypes.func.isRequired
   };
 
   render() {
@@ -41,13 +41,14 @@ export default class NavBar extends React.Component {
           {menuItems.map((item, i) => (
             <Menu.Item
               position={i === 0 ? 'right' : undefined}
+              key={item}
               name={item}
               href={item.href ? `/${item.href}` : `/#${item}`}
               style={menuItemStyle}
             />
           ))}
           <Menu.Item>
-            <Icon name='setting' inverted={this.props.inverted} onClick={this.props.showMgmtModal} />
+            <Icon name='setting' inverted={this.props.inverted} onClick={this.props.showSignInModal} />
           </Menu.Item>
         </Menu>
       </Segment>
