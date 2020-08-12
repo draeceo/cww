@@ -8,17 +8,28 @@ const str = firebase.storage();
 const projectsDbRef = db.ref('/projects');
 const projectsStrRef = str.ref('/projects');
 
-export const putProject = async (isCreating, key, mainImg, gallery, title, description) => {
+/**
+ * Creates or updates a project with the given content.
+ * @param {boolean} isCreating - is the project being updated or created.
+ * @param {string} key - if updating, the key of the project to update.
+ * @param {File} mainImg - the mainImg File object.
+ * @param {FileList} gallery - a FileList containing all gallery File objects.
+ * @param {string} title - the project title.
+ * @param {string} description - the project description.
+ * @param {string} date - the project date.
+ */
+export const putProject = async (isCreating, key, mainImg, gallery, title, description, date) => {
   const mainImgFileName = mainImg.name;
-  const galleryFileNames = gallery.map((file) => [file.name, file]);
+  const galleryFileNames = Object.values(gallery).map((file) => [file.name, file]);
   const projectData = {
     title,
     description,
+    date,
     mainImg: mainImgFileName,
     gallery: galleryFileNames.map(([fileName]) => fileName)
   };
 
-  const projectKey = isCreating ? await projectsDbRef.push(projectData) : key;
+  const projectKey = isCreating ? (await projectsDbRef.push(projectData)).key : key;
   const projectStrRef = projectsStrRef.child(projectKey);
 
   const imgUploadCalls = galleryFileNames.map(([fileName, file]) => projectStrRef.child(fileName).put(file));
@@ -27,6 +38,10 @@ export const putProject = async (isCreating, key, mainImg, gallery, title, descr
   return Promise.all(imgUploadCalls);
 }
 
+/**
+ * Retrieves a project and returns an object containing the project key and data.
+ * @param {string} projectKey - the key of the project to retrieve.
+ */
 export const getProject = async (projectKey) => {
   const projectStrRef = projectsStrRef.child(projectKey)
   const projectData = await projectsDbRef.child(projectKey).once('value').val();
@@ -37,9 +52,12 @@ export const getProject = async (projectKey) => {
   projectData.mainImg = mainImgURL;
   projectData.gallery = galleryImgURLs;
   
-  return { [projectKey]: projectData };
+  return { key: projectKey, data: projectData };
 }
 
+/**
+ * Retrieves all projects and returns an array of project objects.
+ */
 export const getAllProjects = async () => {
   const projectsSnap = await projectsDbRef.once('value');
   const projectDownloadCalls = [];
@@ -47,6 +65,10 @@ export const getAllProjects = async () => {
   return Promise.all(projectDownloadCalls);
 }
 
+/**
+ * Deletes the given project.
+ * @param {string} projectKey - the key of the project to delete. 
+ */
 export const deleteProject = async (projectKey) => {
   const projectRef = projectsDbRef.child(projectKey);
   const projectStrRef = projectStrRef.child(projectKey);
