@@ -44,7 +44,7 @@ export const putProject = async (isCreating, key, mainImg, gallery, title, descr
  */
 export const getProject = async (projectKey) => {
   const projectStrRef = projectsStrRef.child(projectKey)
-  const projectData = await projectsDbRef.child(projectKey).once('value').val();
+  const projectData = (await projectsDbRef.child(projectKey).once('value')).val();
 
   const galleryImgDownloadCalls = projectData.gallery.map((fileName) => projectStrRef.child(fileName).getDownloadURL());
   const mainImgURL = await projectStrRef.child(projectData.mainImg).getDownloadURL();
@@ -61,8 +61,13 @@ export const getProject = async (projectKey) => {
 export const getAllProjects = async () => {
   const projectsSnap = await projectsDbRef.once('value');
   const projectDownloadCalls = [];
-  projectsSnap.forEach(({ projectKey }) => projectDownloadCalls.push(getProject(projectKey)));
-  return Promise.all(projectDownloadCalls);
+  projectsSnap.forEach(({ key }) => projectDownloadCalls.push(getProject(key)));
+  const projects = await Promise.all(projectDownloadCalls);
+  const projectsObj = {};
+  projects.forEach(({key, data}) => {
+    projectsObj[key] = data;
+  });
+  return projectsObj;
 }
 
 /**

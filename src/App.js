@@ -6,7 +6,7 @@ import NavBar from './components/NavBar';
 import Home from './pages/Home';
 
 const App = () => (
-  <div>
+  <div style={{ backgroundColor: '#f5f5f5'}}>
     <ToastContainer />
     <Home />
   </div>

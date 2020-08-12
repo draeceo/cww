@@ -11,18 +11,32 @@ const text = {
 const heading = {
   ...text,
   fontWeight: 600,
-  fontSize: 32
+  fontSize: 32,
+  color: '#404040'
 }
 
 const body = {
   ...text,
-  fontSize: 16
+  fontSize: 16,
+  lineHeight: 1.5
+}
+
+const subBody = {
+  ...body,
+  color: '#ccc'
 }
 
 const navItem = {
   ...text,
   fontWeight: 700,
   fontSize: 16
+}
+
+const subHeading = {
+  ...text,
+  fontWeight: 700,
+  fontSize: 21,
+  lineHeight: 1.5
 }
 
 const mainItem = isMobile ?
@@ -49,8 +63,10 @@ const button = {
 
 export const textStyles = {
   body,
+  subBody,
   heading,
   navItem,
+  subHeading,
   mainItem,
   button
 }
@@ -59,4 +75,10 @@ export const textStyles = {
 
 export const colors = {
   blackOverlay: 'rgb(0,0,0,0.4)'
+}
+
+// SHADOW
+
+export const shadows = {
+  box: '0 0 4px rgba(0, 0, 0, .5)'
 }
