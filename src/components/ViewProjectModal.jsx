@@ -5,7 +5,7 @@ import {
   Button,
   Icon
 } from 'semantic-ui-react';
-import { Row, Column } from 'simple-flexbox';
+import { Row } from 'simple-flexbox';
 import { isMobile } from 'react-device-detect';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
