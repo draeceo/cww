@@ -45,13 +45,13 @@ export const putProject = async (isCreating, key, mainImg, gallery, title, descr
 export const getProject = async (projectKey) => {
   const projectStrRef = projectsStrRef.child(projectKey)
   const projectData = await projectsDbRef.child(projectKey).once('value').val();
-  
+
   const galleryImgDownloadCalls = projectData.gallery.map((fileName) => projectStrRef.child(fileName).getDownloadURL());
   const mainImgURL = await projectStrRef.child(projectData.mainImg).getDownloadURL();
   const galleryImgURLs = await Promise.all(galleryImgDownloadCalls);
   projectData.mainImg = mainImgURL;
   projectData.gallery = galleryImgURLs;
-  
+
   return { key: projectKey, data: projectData };
 }
 
@@ -67,7 +67,7 @@ export const getAllProjects = async () => {
 
 /**
  * Deletes the given project.
- * @param {string} projectKey - the key of the project to delete. 
+ * @param {string} projectKey - the key of the project to delete.
  */
 export const deleteProject = async (projectKey) => {
   const projectRef = projectsDbRef.child(projectKey);

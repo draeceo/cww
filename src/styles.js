@@ -25,7 +25,7 @@ const navItem = {
   fontSize: 16
 }
 
-const mainItem = isMobile ? 
+const mainItem = isMobile ?
 {
   fontFamily: 'Baskerville',
   fontWeight: 600,

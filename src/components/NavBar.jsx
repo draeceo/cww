@@ -27,9 +27,9 @@ export default class NavBar extends React.Component {
       <Segment inverted={this.props.inverted} style={{ padding: 0, margin: 0 }}>
         <Menu inverted={this.props.inverted} secondary stackable>
           <Menu.Item>
-            <Image 
-              src={this.props.inverted ? logoWhite : logoBlack} 
-              alt='CWW Logo' 
+            <Image
+              src={this.props.inverted ? logoWhite : logoBlack}
+              alt='CWW Logo'
               size='small'
               href='/'
               style={{
