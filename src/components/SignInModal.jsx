@@ -32,12 +32,22 @@ export default class SignInModal extends React.Component {
 
   handleChange = ({ target }) => this.setState({ [target.name]: target.value });
 
+  clearFields = () => {
+    this.setState({
+      email: '',
+      password: '',
+      isLoading: false,
+      error: false,
+      errorMessage: ''
+    });
+  }
+
   handleSubmit = async () => {
     this.setState({ isLoading: true });
     try {
       const { email, password } = this.state;
       await signInAdmin(email, password);
-      this.setState({ error: false });
+      this.clearFields();
       this.props.onSuccess();
     } catch (e) {
       this.setState({
@@ -50,12 +60,7 @@ export default class SignInModal extends React.Component {
   }
 
   handleClose = () => {
-    this.setState({
-      email: '',
-      password: '',
-      isLoading: false,
-      error: false
-    });
+    this.clearFields();
     this.props.hide();
   }
 
@@ -67,7 +72,7 @@ export default class SignInModal extends React.Component {
       showError(e.message);
     }
   }
-  
+
   render() {
     return (
       <Modal
@@ -89,8 +94,19 @@ export default class SignInModal extends React.Component {
             </div>
             :
             <Form loading={this.state.isLoading}>
-              <Form.Input name='email' label='Email' type='email' onChange={this.handleChange} />
-              <Form.Input name='password' label='Password' type='password' onChange={this.handleChange} />
+              <Form.Input
+                name='email'
+                label='Email'
+                placeholder='your@email.com'
+                type='email'
+                onChange={this.handleChange}
+              />
+              <Form.Input
+                name='password'
+                label='Password'
+                type='password'
+                onChange={this.handleChange}
+              />
               <Message
                 error
                 visible={this.state.error}
