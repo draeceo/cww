@@ -4,8 +4,10 @@ import {
   Modal,
   Form,
   Message,
-  Button
+  Button,
+  Icon
 } from 'semantic-ui-react';
+import { Row } from 'simple-flexbox';
 import { isMobile } from 'react-device-detect';
 import { putProject } from '../database/ProjectAccess';
 
@@ -44,7 +46,6 @@ export default class AddProjectModal extends React.Component {
   }
 
   handleChange = ({ target }) => {
-    console.dir(target);
     switch (target.name) {
       case 'mainImg':
         this.setState({ mainImg: target.files[0] });
@@ -84,7 +85,12 @@ export default class AddProjectModal extends React.Component {
           width: isMobile ? '90vw' : '40vw'
         }}
       >
-        <Modal.Header>Add a Project</Modal.Header>
+        <Modal.Header>
+          <Row justifyContent='space-between'>
+            Add a Project
+            <Icon name='close' onClick={this.props.hide} />
+          </Row>
+        </Modal.Header>
         <Modal.Content>
           <Form loading={this.state.isLoading} onSubmit={this.handleSubmit}>
             <Form.Input
