@@ -29,9 +29,14 @@ export default class ProjectView extends React.Component {
 
   hideAddProjectModal = () => this.setState({ showAddProjectModal: false });
 
-  showViewProjectModal = (data) => this.setState({ showViewProjectModal: true, activeProjectData: data });
+  showViewProjectModal = (key, data) => this.setState({ showViewProjectModal: true, activeProjectKey: key, activeProjectData: data });
 
   hideViewProjectModal = () => this.setState({ showViewProjectModal: false });
+
+  deleteProjectSuccess = () => {
+    this.hideViewProjectModal();
+    showSuccess('Project successfully deleted.');
+  }
 
   addProjectSuccess = () => {
     this.hideAddProjectModal();
@@ -50,7 +55,7 @@ export default class ProjectView extends React.Component {
       return (
         <Grid.Column style={{ minWidth: 280 }}>
           <Row justifyContent='center'>
-            <div onClick={() => this.showViewProjectModal(data)}>
+            <div onClick={() => this.showViewProjectModal(key, data)}>
               <ProjectCard
                 mainImg={data.mainImg}
                 title={data.title}
@@ -79,6 +84,8 @@ export default class ProjectView extends React.Component {
         <ViewProjectModal
           open={this.state.showViewProjectModal}
           hide={this.hideViewProjectModal}
+          onSuccess={this.deleteProjectSuccess}
+          projectKey={this.state.activeProjectKey}
           projectData={this.state.activeProjectData}
         />
         <Column

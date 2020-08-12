@@ -61,7 +61,8 @@ export const getProject = async (projectKey) => {
 export const getAllProjects = async () => {
   const projectsSnap = await projectsDbRef.once('value');
   const projectDownloadCalls = [];
-  projectsSnap.forEach(({ key }) => projectDownloadCalls.push(getProject(key)));
+  projectsSnap.forEach(({ key }) => {console.log(key);projectDownloadCalls.push(getProject(key))});
+  console.dir(projectDownloadCalls);
   const projects = await Promise.all(projectDownloadCalls);
   const projectsObj = {};
   projects.forEach(({key, data}) => {
@@ -76,7 +77,11 @@ export const getAllProjects = async () => {
  */
 export const deleteProject = async (projectKey) => {
   const projectRef = projectsDbRef.child(projectKey);
-  const projectStrRef = projectStrRef.child(projectKey);
+  const projectStrRef = projectsStrRef.child(projectKey);
   await projectRef.remove();
-  return projectsStrRef.delete();
+
+  const imgRefs = (await projectStrRef.listAll()).items;
+  const imgDeleteCalls = imgRefs.map((ref) => ref.delete());
+
+  return Promise.all(imgDeleteCalls);
 }
