@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import SignInModal from '../components/SignInModal';
 import MainItem from '../components/MainItem';
 import ProjectView from '../components/ProjectView';
+import About from '../components/About';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ export default class Home extends React.Component {
         />
         <MainItem />
         <ProjectView />
+        <About />
       </div>
     );
   }
