@@ -12,7 +12,7 @@ const MainItem = () => (
       backgroundImage: `url(${background})`,
       backgroundSize: 'cover',
       width: '100vw',
-      height: '55vh',
+      height: '65vh',
       boxShadow: shadows.box
     }}
   >
