@@ -15,7 +15,7 @@ const menuItemStyle = {
   margin: '0 0'
 }
 
-const menuItems = ['projects', 'about', 'contact'];
+const menuItems = ['projects', 'about', { name: 'contact', href: '#about' }];
 
 export default class NavBar extends React.Component {
   static propTypes = {
@@ -41,8 +41,8 @@ export default class NavBar extends React.Component {
           {menuItems.map((item, i) => (
             <Menu.Item
               position={i === 0 ? 'right' : undefined}
-              key={item}
-              name={item}
+              key={item.name || item}
+              name={item.name || item}
               href={item.href ? `/${item.href}` : `/#${item}`}
               style={menuItemStyle}
             />

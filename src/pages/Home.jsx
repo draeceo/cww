@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollableAnchor from 'react-scrollable-anchor';
 import { showSuccess } from '../components/Toast';
 import NavBar from '../components/NavBar';
 import SignInModal from '../components/SignInModal';
@@ -35,8 +36,12 @@ export default class Home extends React.Component {
           onSuccess={this.signInSuccess}
         />
         <MainItem />
-        <ProjectView />
-        <About />
+        <ScrollableAnchor id='projects'>
+          <ProjectView />
+        </ScrollableAnchor>
+        <ScrollableAnchor id='about'>
+          <About />
+        </ScrollableAnchor>
         <Contact email='carlo@cremoniniwoodworks.com' phone='6175204074' />
       </div>
     );
