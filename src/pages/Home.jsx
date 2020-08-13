@@ -5,6 +5,7 @@ import SignInModal from '../components/SignInModal';
 import MainItem from '../components/MainItem';
 import ProjectView from '../components/ProjectView';
 import About from '../components/About';
+import Contact from '../components/Contact';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -36,6 +37,7 @@ export default class Home extends React.Component {
         <MainItem />
         <ProjectView />
         <About />
+        <Contact email='carlo@cremoniniwoodworks.com' phone='6175204074' />
       </div>
     );
   }
