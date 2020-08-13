@@ -91,11 +91,12 @@ export default class ProjectView extends React.Component {
         <Column
           justifyContent='center'
           style={{
-            padding: '15px 20px'
+            padding: '100px 20px'
           }}
         >
           <Row justifyContent='space-between'>
           <h1 style={textStyles.heading}>Projects</h1>
+          <p />
           {
             isSignedIn() ?
             <Icon
