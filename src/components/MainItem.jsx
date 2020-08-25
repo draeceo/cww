@@ -29,7 +29,7 @@ const MainItem = () => (
         </Row>
         <Row justifyContent='center' style={{ paddingTop: 30 }}>
           <Button primary href={'/#about'} style={textStyles.button}>
-            Get in contact
+            Get in touch
           </Button>
         </Row>
       </Column>

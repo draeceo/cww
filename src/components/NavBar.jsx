@@ -9,6 +9,7 @@ import {
 import { textStyles } from '../styles';
 import logoWhite from '../img/cww-white.png';
 import logoBlack from '../img/cww-black.png';
+import icon from '../img/cww-icon.png';
 
 const menuItemStyle = {
   ...textStyles.navItem,
@@ -24,16 +25,17 @@ export default class NavBar extends React.Component {
 
   render() {
     return (
-      <Segment inverted={this.props.inverted} style={{ padding: 0, margin: 0 }}>
+      <Segment inverted={this.props.inverted} style={{ padding: 0, margin: 0, borderRadius: 0 }}>
         <Menu inverted={this.props.inverted} secondary stackable>
           <Menu.Item>
             <Image
-              src={this.props.inverted ? logoWhite : logoBlack}
+              src={icon}
               alt='CWW Logo'
-              size='small'
               href='/'
               style={{
                 ...menuItemStyle,
+                width: 40,
+                height: 'auto',
                 padding: 5
               }}
             />
